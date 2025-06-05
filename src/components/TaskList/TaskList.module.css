@@ -1,0 +1,411 @@
+/* src/components/TaskList/TaskList.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
+:root {
+  /* Core colors (Task Manager Theme from Home.module.css) */
+  --clr-primary: #3B82F6;         /* Bright Blue */
+  --clr-primary-rgb: 59, 130, 246;
+  --clr-primary-dark: #2563EB;    /* Darker Bright Blue */
+  --clr-accent: #F472B6;          /* Soft Pink */
+  --clr-accent-rgb: 244, 114, 182;
+  --clr-secondary-accent: #FBBF24; /* Sun Yellow */
+
+  --clr-bg-main: #F0F9FF;         /* Blue-Tinted White */
+  --clr-bg-card: #FFFFFF;         /* White */
+
+  --clr-text-primary: #1E293B;    /* Slate */
+  --clr-text-secondary: #475569;  /* Lighter Slate */
+  --clr-text-muted: #64748B;      /* Slate 500 */
+  --clr-text-on-accent: #FFFFFF;  /* White text on colored backgrounds */
+
+  /* Standard UI Elements */
+  --input-border-color: #e5e7eb; /* Gray-200 */
+  --input-focus-border-color: var(--clr-primary); /* Bright Blue for input focus */
+  --input-focus-shadow-color: rgba(var(--clr-primary-rgb), 0.2); /* Bright Blue shadow for input focus */
+  --card-border-color: #e5e7eb; /* Gray-200 */
+  --card-shadow-color: rgba(var(--clr-primary-rgb), 0.06); /* Subtle primary shadow */
+  --card-shadow-hover-color: rgba(var(--clr-primary-rgb), 0.1);
+
+  --color-success: #10B981;         /* Emerald Green */
+  --color-success-rgb: 16, 185, 129;
+  --color-success-hover: #059669;   /* Darker Emerald */
+  --color-success-bg-light: rgba(var(--color-success-rgb), 0.1);
+  --color-error: #EF4444;           /* Red */
+  --color-error-rgb: 239, 68, 68;
+  --color-error-hover: #DC2626;     /* Darker Red */
+  --color-error-bg-light: rgba(var(--color-error-rgb), 0.1);
+  --color-error-border: rgba(var(--color-error-rgb), 0.3);
+  --color-error-text: #B91C1C;      /* Dark Red for text on light error bg */
+
+  --color-warning: #F59E0B;        /* Amber */
+  --color-warning-rgb: 245, 158, 11;
+  --color-warning-hover: #D97706;  /* Darker Amber */
+  --color-warning-bg-light: rgba(var(--color-warning-rgb), 0.1);
+
+
+  --font-primary: 'Poppins', sans-serif;
+  --font-secondary: 'Inter', sans-serif;
+
+  --transition-fast: all 0.2s ease-in-out;
+  --transition-medium: all 0.3s ease-in-out;
+}
+
+.taskListpage {
+  padding: 2rem;
+  background-color: var(--clr-bg-main); /* Blue-Tinted White page background */
+  color: var(--clr-text-primary);
+  font-family: var(--font-secondary);
+  min-height: 100vh;
+}
+
+.taskListHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--card-border-color);
+}
+
+.taskListHeader h1 {
+  margin: 0;
+  color: var(--clr-primary); /* Bright Blue */
+  font-size: 2.25rem;
+  font-weight: 700;
+  font-family: var(--font-primary);
+}
+
+.addTaskButton {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--clr-primary); /* Bright Blue */
+  color: var(--clr-text-on-accent);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: var(--font-primary);
+  transition: var(--transition-fast);
+  box-shadow: 0 4px 10px rgba(var(--clr-primary-rgb), 0.2); /* Bright Blue shadow */
+}
+
+.addTaskButton:hover {
+  background-color: var(--clr-primary-dark); /* Darker Bright Blue */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(var(--clr-primary-rgb), 0.3); /* Adjusted shadow to match primary */
+}
+
+.taskFormModal {
+  background-color: var(--clr-bg-card);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px var(--card-shadow-color);
+  margin-bottom: 2.5rem;
+  border: 1px solid var(--card-border-color);
+}
+
+.taskFormModal h3 {
+  margin-top: 0;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--clr-primary); /* Bright Blue */
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: var(--font-primary);
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 0.6rem;
+  font-weight: 500; /* Using new text secondary */
+  color: var(--clr-text-secondary);
+  font-size: 0.9rem;
+}
+
+.formGroup input[type="text"],
+.formGroup input[type="date"],
+.formGroup textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--input-border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  color: var(--clr-text-primary);
+  background-color: var(--clr-bg-card);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.formGroup input[type="text"]:focus,
+.formGroup input[type="date"]:focus,
+.formGroup textarea:focus {
+  border-color: var(--input-focus-border-color);
+  box-shadow: 0 0 0 3px var(--input-focus-shadow-color);
+  outline: none;
+}
+
+.formGroup textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  font-family: var(--font-primary);
+  border: none;
+  transition: var(--transition-fast);
+}
+
+.buttonPrimary {
+  composes: button;
+  background-color: var(--clr-primary); /* Bright Blue */
+  color: var(--clr-text-on-accent);
+  box-shadow: 0 4px 10px rgba(var(--clr-primary-rgb), 0.2); /* Bright Blue shadow */
+}
+.buttonPrimary:hover {
+  background-color: var(--clr-primary-dark); /* Darker Bright Blue */
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(var(--clr-primary-rgb), 0.3);
+}
+
+.buttonSecondary {
+  composes: button;
+  background-color: #e5e7eb; /* Lighter grey (Gray-200) */
+  color: var(--clr-text-primary);
+  border: 1px solid #d1d5db; /* Gray-300 */
+}
+.buttonSecondary:hover {
+  background-color: #e9ecef;
+  border-color: #ced4da;
+  transform: translateY(-1px);
+}
+
+.taskListContainer {
+  margin-top: 2rem;
+}
+
+.taskItem {
+  background-color: var(--clr-bg-card);
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--card-border-color);
+  border-radius: 12px;
+  margin-bottom: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: box-shadow var(--transition-fast), transform var(--transition-fast), border-color var(--transition-fast);
+  box-shadow: 0 2px 8px var(--card-shadow-color);
+}
+
+.taskItem:hover {
+  box-shadow: 0 6px 18px var(--card-shadow-hover-color);
+  transform: translateY(-3px);
+  border-color: var(--clr-primary); /* Bright Blue border on hover */
+}
+
+.taskItem.completed {
+  background-color: var(--color-success-bg-light);
+  border-left: 5px solid var(--color-success);
+  box-shadow: none;
+}
+
+.taskItem.completed:hover {
+  border-color: var(--color-success);
+}
+
+
+.taskItem.completed .taskTitle {
+  text-decoration: line-through;
+  color: var(--clr-text-muted);
+  text-decoration-color: var(--clr-text-muted);
+}
+
+.taskInfo {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  flex-grow: 1;
+  margin-right: 1rem;
+}
+
+.taskInfo input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  cursor: pointer;
+  accent-color: var(--clr-primary); /* Bright Blue checkbox */
+  flex-shrink: 0;
+}
+
+.taskDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.taskTitle {
+  font-weight: 600;
+  color: var(--clr-text-primary);
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.taskDescription {
+  font-size: 0.9rem;
+  color: var(--clr-text-secondary);
+  line-height: 1.5;
+}
+
+.taskMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.taskDueDate {
+  font-size: 0.85rem;
+  color: var(--clr-text-secondary);
+  white-space: nowrap;
+}
+
+.taskActions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: relative;
+}
+
+.deleteButton {
+  background: none;
+  border: none;
+  color: var(--color-error);
+  cursor: pointer;
+  font-size: 1.3rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+  line-height: 1;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.deleteButton:hover {
+  color: var(--color-error-hover); /* Using new error hover */
+  background-color: rgba(var(--color-error-rgb), 0.08);
+}
+
+.errorMessage {
+  color: var(--color-error-text);
+  background-color: var(--color-error-bg-light);
+  border: 1px solid var(--color-error-border);
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.pointsAnimation {
+  position: absolute;
+  right: 45px;
+  top: -15px; /* Using new primary for points */
+  background-color: var(--clr-primary); 
+  color: var(--clr-text-on-accent);
+  padding: 0.4rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  white-space: nowrap;
+  animation: floatAndFade 1.8s ease-out forwards;
+  z-index: 100;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+@keyframes floatAndFade {
+  0% { transform: translateY(0) scale(0.8); opacity: 0; }
+  20% { transform: translateY(-10px) scale(1); opacity: 1; }
+  80% { transform: translateY(-35px) scale(1); opacity: 1; }
+  100% { transform: translateY(-50px) scale(0.7); opacity: 0; }
+}
+
+@media (max-width: 768px) {
+  .taskListpage {
+    padding: 1.5rem;
+  }
+  .taskListHeader h1 {
+    font-size: 1.8rem;
+  }
+  .addTaskButton {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  .taskFormModal {
+    padding: 1.5rem;
+  }
+  .taskItem {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  .taskInfo {
+    margin-right: 0;
+  }
+  .taskMeta {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  .taskDueDate {
+    margin-left: 0;
+  }
+  .taskActions {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .taskListpage {
+    padding: 1rem;
+  }
+  .taskListHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .taskListHeader h1 {
+    font-size: 1.6rem;
+  }
+  .formActions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .button {
+    width: 100%;
+    text-align: center;
+  }
+  .taskTitle {
+    font-size: 1rem;
+  }
+  .taskDescription {
+    font-size: 0.85rem;
+  }
+}

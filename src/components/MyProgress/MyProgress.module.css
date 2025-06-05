@@ -1,0 +1,386 @@
+/* src/components/MyProgress/MyProgress.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Core colors (Task Manager Theme from Home.module.css) */
+  --clr-primary: #3B82F6;         /* Bright Blue */
+  --clr-primary-rgb: 59, 130, 246;
+  --clr-primary-dark: #2563EB;    /* Darker Bright Blue */
+  --clr-accent: #F472B6;          /* Soft Pink */
+  --clr-accent-rgb: 244, 114, 182;
+  --clr-secondary-accent: #FBBF24; /* Sun Yellow */
+  --clr-secondary-accent-rgb: 251, 191, 36;
+
+  --clr-bg-main: #F0F9FF;         /* Blue-Tinted White */
+  --clr-bg-card: #FFFFFF;         /* White */
+  --clr-bg-input: #F8FAFC;        /* Very light gray, almost white for input backgrounds */
+
+  --clr-text-primary: #1E293B;    /* Slate */
+  --clr-text-secondary: #475569;  /* Lighter Slate */
+  --clr-text-muted: #64748B;      /* Slate 500 */
+  --clr-text-on-accent: #FFFFFF;  /* White text on colored backgrounds */
+
+  /* Standard UI Elements */
+  --card-border-color: #e5e7eb; /* Gray-200 */
+  --card-shadow-color: rgba(var(--clr-primary-rgb), 0.06); /* Subtle primary shadow */
+  --card-shadow-hover-color: rgba(var(--clr-primary-rgb), 0.1);
+
+  --color-success: #10B981;         /* Emerald Green */
+  --color-error: #EF4444;           /* Red */
+  --color-error-rgb: 239, 68, 68;
+  
+  --font-primary: 'Poppins', sans-serif;
+  --font-secondary: 'Inter', sans-serif;
+
+  --transition-fast: all 0.2s ease-in-out;
+  --transition-medium: all 0.3s ease-in-out;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+
+  /* Badge specific colors */
+  --badge-gold-bg: rgba(var(--clr-secondary-accent-rgb), 0.15);
+  --badge-gold-text: #b8860b; 
+  --badge-gold-border: var(--clr-secondary-accent);
+  --badge-silver-bg: rgba(192, 192, 192, 0.2); 
+  --badge-silver-text: #546e7a; 
+  --badge-silver-border: #adb5bd; 
+  --badge-bronze-bg: rgba(205, 127, 50, 0.2); /* Slightly more opaque bronze */
+  --badge-bronze-text: #804000; /* Darker bronze text */
+  --badge-bronze-border: #cd7f32; /* Bronze border */
+  --badge-default-bg: rgba(var(--clr-primary-rgb), 0.1); /* Light Primary Blue */
+  --badge-default-text: var(--clr-primary); /* Primary Blue */
+  --badge-default-border: rgba(var(--clr-primary-rgb), 0.3); /* Lighter Primary Blue border */
+}
+
+.myProgressPage {
+  padding: 2rem;
+  background-color: var(--clr-bg-main); /* Blue-Tinted White */
+  color: var(--clr-text-primary);
+  font-family: var(--font-secondary);
+  min-height: 100vh;
+}
+
+.myProgressPage h1 {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--card-border-color);
+  color: var(--clr-primary); /* Bright Blue */
+  font-size: 2.25rem;
+  font-weight: 700;
+  font-family: var(--font-primary);
+}
+
+.myProgressPage h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--clr-primary); /* Bright Blue for section headers */
+  font-size: 1.75rem;
+  font-weight: 600;
+  font-family: var(--font-primary);
+}
+
+.sectionCard {
+  background-color: var(--clr-bg-card);
+  padding: 2rem;
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 6px 20px var(--card-shadow-color);
+  margin-bottom: 2.5rem;
+  border: 1px solid var(--card-border-color);
+  transition: var(--transition-medium);
+}
+
+.sectionCard:hover {
+  box-shadow: 0 8px 25px var(--card-shadow-hover-color);
+  transform: translateY(-3px);
+}
+
+.progressChartSection {
+  composes: sectionCard;
+}
+
+.chartPlaceholder {
+  min-height: 300px; /* Ensure enough height for the chart */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: var(--clr-bg-input); */ /* Light gray if needed, or remove for chart bg */
+  border-radius: var(--border-radius-md);
+  color: var(--clr-text-secondary);
+  font-style: italic;
+  font-size: 1rem;
+  padding: 1rem 0; /* Padding for placeholder text, 0 for chart */
+  text-align: center;
+}
+
+/* Styling for Recharts Tooltip and Grid */
+:global(.recharts-tooltip-wrapper) {
+  outline: none !important;
+}
+:global(.recharts-default-tooltip) {
+  background-color: var(--clr-text-primary) !important; /* Dark Slate background for tooltip */
+  color: var(--clr-bg-card) !important; /* White text */
+  border: 1px solid var(--clr-primary-light) !important; /* Lighter Blue border */
+  border-radius: 6px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2) !important;
+  font-family: var(--font-secondary) !important;
+}
+:global(.recharts-cartesian-grid-horizontal line),
+:global(.recharts-cartesian-grid-vertical line) {
+  stroke: var(--card-border-color) !important; /* Light Gray for grid lines */
+  stroke-opacity: 0.5 !important;
+}
+:global(.recharts-xAxis .recharts-text tspan),
+:global(.recharts-yAxis .recharts-text tspan) {
+  fill: var(--clr-text-secondary) !important; /* Lighter Slate for axis labels */
+  font-family: var(--font-secondary) !important;
+  font-size: 0.85rem !important;
+}
+
+
+.completionTimelineSection {
+  composes: sectionCard;
+}
+
+.timelineList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.timelineList li {
+  padding: 1rem 0.5rem;
+  border-bottom: 1px solid var(--card-border-color);
+  color: var(--clr-text-secondary);
+  font-size: 0.95rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color var(--transition-fast);
+}
+
+.timelineList li:hover {
+  background-color: rgba(var(--clr-primary-rgb), 0.03); /* Very light Blue hover */
+}
+
+.timelineList li:last-child {
+  border-bottom: none;
+}
+
+.timelineList strong {
+  color: var(--clr-text-primary);
+  font-weight: 600;
+  margin-right: 0.75rem;
+}
+
+.timelineDate {
+  font-size: 0.85rem;
+  color: var(--clr-primary); /* Bright Blue */
+  font-weight: 500;
+}
+
+.motivationBadgesSection {
+  composes: sectionCard;
+}
+
+.motivationalQuote {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--clr-primary); /* Bright Blue */
+  margin-bottom: 2rem;
+  text-align: center;
+  padding: 1.5rem;
+  background-color: rgba(var(--clr-primary-rgb), 0.05); /* Light Blue background */
+  border-left: 5px solid var(--clr-primary); /* Bright Blue border */
+  border-radius: var(--border-radius-md);
+  line-height: 1.6;
+}
+
+.badgesContainer {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.badgesContainer h3 {
+  font-size: 1.1rem;
+  color: var(--clr-text-primary);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.badge {
+  display: inline-block;
+  color: var(--badge-default-text);
+  background-color: var(--badge-default-bg);
+  border: 1px solid var(--badge-default-border);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0.3rem 0.4rem;
+  transition: var(--transition-fast);
+  cursor: default;
+}
+
+.badge:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.badge.gold {
+  background-color: var(--badge-gold-bg);
+  color: var(--badge-gold-text);
+  border-color: var(--badge-gold-border);
+}
+.badge.silver {
+  background-color: var(--badge-silver-bg);
+  color: var(--badge-silver-text);
+  border-color: var(--badge-silver-border);
+}
+.badge.bronze {
+  background-color: var(--badge-bronze-bg);
+  color: var(--badge-bronze-text);
+  border-color: var(--badge-bronze-border);
+}
+
+/* Styles for the point-based badges, similar to PointsBadge.module.css */
+.pointsBadgeBase { /* Re-using a similar base name for consistency */
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25em 0.6em;
+  font-size: 0.9rem; /* Slightly larger for progress page display */
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  border-radius: 0.375rem;
+  margin: 0.3rem 0.4rem; /* Consistent margin with other badges */
+  border: 1px solid transparent; /* Base border */
+}
+
+.newbie {
+  composes: pointsBadgeBase;
+  background-color: #f0f0f0;
+  color: #555;
+  border-color: #dcdcdc;
+}
+
+.hustler {
+  composes: pointsBadgeBase;
+  background-color: #ffe0b2;
+  color: #e65100;
+  border-color: #ffb74d;
+}
+
+.pro {
+  composes: pointsBadgeBase;
+  background-color: #b3e5fc;
+  color: #01579b;
+  border-color: #4fc3f7;
+}
+
+.master {
+  composes: pointsBadgeBase;
+  background-color: #d1c4e9;
+  color: #311b92;
+  border-color: #9575cd;
+}
+
+.legend {
+  composes: pointsBadgeBase;
+  background-image: linear-gradient(45deg, #ffefba, #ffd700);
+  color: #856404; /* Darker yellow for better contrast */
+  border-color: #ffc107;
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+.earnedBadgesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center; /* Or flex-start */
+  margin-top: 0.5rem;
+}
+
+.errorMessage { /* For API errors */
+  color: var(--color-error);
+  background-color: rgba(var(--color-error-rgb), 0.1);
+  border: 1px solid rgba(var(--color-error-rgb), 0.3);
+  padding: 1rem;
+  border-radius: var(--border-radius-md);
+  text-align: center;
+}
+
+
+@media (max-width: 768px) {
+  .myProgressPage {
+    padding: 1.5rem;
+  }
+  .myProgressPage h1 {
+    font-size: 1.8rem;
+  }
+  .myProgressPage h2 {
+    font-size: 1.5rem;
+  }
+  .sectionCard {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .timelineList li {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .myProgressPage {
+    padding: 1rem;
+  }
+  .myProgressPage h1 {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+  }
+  .myProgressPage h2 {
+    font-size: 1.3rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+  .sectionCard {
+    padding: 1rem;
+  }
+  .motivationalQuote {
+    font-size: 1.1rem;
+    padding: 1rem;
+  }
+  .badge {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
+/* c:/Users/misba/OneDrive/Documents/workopoly1_proj/frontend/src/components/MyProgress/MyProgress.module.css */
+/* ... other styles ... */
+
+.completionBarContainer {
+  width: 100%;
+  background-color: var(--clr-bg-input); 
+  border-radius: var(--border-radius-md);
+  height: 20px; /* Or your desired height */
+  margin-top: 0.5rem;
+  overflow: hidden; /* To keep the fill within rounded corners */
+}
+
+.completionBarFill {
+  height: 100%;
+  background-color: var(--clr-primary); /* Bright Blue */
+  color: var(--clr-text-on-accent); /* White text */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: var(--border-radius-md); /* Match container for smooth fill */
+  transition: width 0.5s ease-in-out;
+}

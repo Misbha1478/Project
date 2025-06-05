@@ -1,0 +1,420 @@
+/* c:/Users/misba/OneDrive/Documents/workopoly1_proj/frontend/src/components/SubscriptionTiers/SubscriptionTiersPage.module.css */
+/* Assumes CSS variables from Home.module.css (or a global scope) are available */
+
+/* 
+  New Color Palette to align with:
+  --clr-primary: #3B82F6; (Bright Blue)
+  --clr-accent: #F472B6; (Soft Pink)
+  --clr-secondary-accent: #FBBF24; (Sun Yellow)
+  --clr-bg-main: #F0F9FF; (Blue-Tinted White)
+  --clr-text-primary: #1E293B; (Slate)
+  --clr-bg-card: #FFFFFF; (White)
+  --clr-text-on-accent: #FFFFFF;
+  --clr-text-secondary: #475569;
+  --clr-text-muted: #64748B;
+  --clr-success: #10B981;
+  --clr-error: #EF4444;
+*/
+
+:root { /* Define core palette here for this module, or ensure they are global */
+  --clr-primary: #3B82F6;
+  --clr-primary-rgb: 59, 130, 246;
+  --clr-primary-dark: #2563EB;
+  --clr-accent: #F472B6;
+  --clr-accent-rgb: 244, 114, 182;
+  --clr-accent-dark: #EC4899;
+  --clr-secondary-accent: #FBBF24;
+  --clr-secondary-accent-rgb: 251, 191, 36;
+
+  --clr-bg-main: #F0F9FF;
+  --clr-bg-card: #FFFFFF;
+  --clr-text-primary: #1E293B;
+  --clr-text-secondary: #475569;
+  --clr-text-muted: #64748B;
+  --clr-text-on-accent: #FFFFFF;
+
+  --clr-success: #10B981;
+  --clr-success-rgb: 16, 185, 129;
+  --clr-error: #EF4444;
+  --clr-error-rgb: 239, 68, 68;
+
+  /* Standard UI Elements */
+  --card-border-color: #e5e7eb; /* Gray-200 */
+  --card-shadow-color: rgba(var(--clr-primary-rgb), 0.07); /* Subtle primary shadow */
+  --card-shadow-hover-color: rgba(var(--clr-primary-rgb), 0.12);
+
+  --font-primary: 'Poppins', sans-serif; /* Assuming Poppins is primary */
+  --font-secondary: 'Inter', sans-serif;
+  --transition-fast: all 0.25s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-medium: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  /* Tier Specific Colors */
+  --tier-default-color: var(--clr-text-muted); /* Muted Slate for default/base */
+  --tier-silver-color: #adb5bd; /* Light Gray for Silver */
+  --tier-gold-color: var(--clr-secondary-accent);   /* Sun Yellow for Gold */
+  --tier-diamond-color: linear-gradient(135deg, var(--clr-primary), var(--clr-accent)); /* Blue to Pink Gradient for Diamond */
+}
+
+/* --- Theme Variables --- */
+:root, [data-theme='light'] {
+  --theme-page-background: var(--clr-bg-main);
+  --theme-page-text-primary: var(--clr-text-primary);
+  --theme-page-text-secondary: var(--clr-text-secondary);
+  --theme-card-background: var(--clr-bg-card);
+  --theme-card-border: var(--card-border-color);
+  --theme-card-shadow: var(--card-shadow-color);
+  --theme-card-shadow-hover: var(--card-shadow-hover-color);
+  --theme-button-primary-bg: var(--clr-primary); /* Bright Blue */
+  --theme-button-primary-text: var(--clr-text-on-accent); /* White text */
+  --theme-button-primary-hover-bg: var(--clr-primary-dark); /* Darker Bright Blue */
+  --theme-button-disabled-bg: var(--clr-text-muted);
+  --theme-button-disabled-text: #e5e7eb; /* Light gray text on muted bg */
+  --theme-accent-cta: var(--clr-primary); /* Main CTA is Bright Blue */
+  --theme-accent-interactive: var(--clr-accent); /* Interactive elements can use Soft Pink */
+  --theme-success-text: var(--clr-success);
+  --theme-success-bg-light: rgba(var(--clr-success-rgb), 0.1);
+  --theme-success-border: rgba(var(--clr-success-rgb), 0.3);
+  --theme-error-text: var(--clr-error);
+  --theme-error-bg-light: rgba(var(--clr-error-rgb), 0.1);
+  --theme-error-border: rgba(var(--clr-error-rgb), 0.3);
+}
+
+[data-theme='dark'] {
+  --theme-page-background: #1a202c; /* Darker gray-blue */
+  --theme-page-text-primary: #e2e8f0; /* Light gray */
+  --theme-page-text-secondary: #a0aec0; /* Medium gray */
+  --theme-card-background: #2d3748; /* Dark gray-blue */
+  --theme-card-border: #4a5568;
+  --theme-card-shadow: rgba(0, 0, 0, 0.2);
+  --theme-card-shadow-hover: rgba(0, 0, 0, 0.3);
+  --theme-button-primary-bg: var(--clr-primary-light); /* Lighter Blue for dark mode */
+  --theme-button-primary-text: #ffffff;
+  --theme-button-primary-hover-bg: var(--clr-primary); 
+  --theme-button-disabled-bg: #4a5568;
+  --theme-button-disabled-text: #a0aec0;
+  --theme-accent-cta: var(--clr-primary-light); 
+  --theme-accent-interactive: var(--clr-accent-light); /* Lighter Pink for dark */
+  --theme-success-text: #c6f6d5;
+  --theme-success-bg-light: rgba(var(--clr-success-rgb), 0.2);
+  --theme-success-border: rgba(var(--clr-success-rgb), 0.4);
+  --theme-error-text: #fecaca;
+  --theme-error-bg-light: #c53030;
+  --theme-error-border: #e53e3e;
+}
+
+[data-theme='soft-pastel'] {
+  --theme-page-background: #fff0f5; /* Lavender blush */
+  --theme-page-text-primary: #5d54a4; /* Dark pastel purple */
+  --theme-page-text-secondary: #8c7aa8; /* Muted pastel purple */
+  --theme-card-background: #ffffff; /* White cards */
+  --theme-card-border: #e6e0f0; /* Light pastel purple border */
+  --theme-card-shadow: rgba(93, 84, 164, 0.1);
+  --theme-card-shadow-hover: rgba(93, 84, 164, 0.15);
+  --theme-button-primary-bg: #d1c4e9; /* Lighter Soft purple */
+  --theme-button-primary-text: #ffffff;
+  --theme-button-primary-hover-bg: #b39ddb; 
+  --theme-button-disabled-bg: #ede7f6;
+  --theme-button-disabled-text: #9575cd;
+  --theme-accent-cta: #b39ddb; 
+  --theme-accent-interactive: #a7e0ee; 
+  --theme-success-text: #347755;
+  --theme-success-bg-light: #e6ffed;
+  --theme-success-border: #c8e6c9;
+  --theme-error-text: #9b3b45;
+  --theme-error-bg-light: #ffebee;
+  --theme-error-border: #fecaca;
+}
+
+
+.tiersPageContainer {
+  padding: 2rem;
+  max-width: 1400px; /* Increased max-width to better accommodate 4 cards */
+  margin: 2rem auto; /* Add top/bottom margin */
+  font-family: var(--font-primary);
+  background-color: var(--theme-page-background);
+  color: var(--theme-page-text-primary);
+  border-radius: 12px;
+  box-shadow: 0 8px 30px var(--theme-card-shadow); /* Use themed shadow */
+}
+
+.pageTitle {
+  text-align: center;
+  color: var(--clr-primary); /* Use main primary color */
+  margin-bottom: 2.5rem; /* Increased margin */
+  font-size: 2.25rem; /* Consistent H1 */
+  font-weight: 700;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--theme-card-border);
+}
+
+.currentUserInfo {
+  text-align: center;
+  margin-bottom: 3rem; /* Increased margin */
+  padding: 1.5rem 2rem; /* Increased padding */
+  background-color: var(--theme-card-background);
+  border-radius: 12px; /* Softer radius */
+  box-shadow: 0 6px 20px var(--theme-card-shadow);
+  border: 1px solid var(--theme-card-border);
+}
+
+.currentUserInfo p {
+  margin: 0.6rem 0; /* Adjusted margin */
+  font-size: 1.15rem; /* Slightly larger */
+  color: var(--theme-page-text-secondary);
+}
+
+.currentTierText {
+  font-weight: 700; /* Bolder */
+  color: var(--clr-accent); /* Use Soft Pink */
+}
+.currentPointsText {
+  font-weight: 700; /* Bolder */
+  color: var(--clr-primary); /* Use Bright Blue */
+}
+
+
+.tiersGrid {
+  display: grid;
+  /* Adjusted minmax to allow 4 cards to fit more comfortably within 1400px */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+  gap: 2.5rem; /* Increased gap */
+  align-items: stretch; /* Ensure cards in the same row stretch to the same height if content differs */
+}
+
+.tierCard {
+  background-color: var(--theme-card-background);
+  border-radius: 12px; /* Consistent radius */
+  padding: 2.5rem; /* Increased padding */
+  box-shadow: 0 8px 25px var(--theme-card-shadow);
+  text-align: center;
+  transition: var(--transition-medium);
+  border-top-width: 6px; /* More prominent top border */
+  border-top-style: solid;
+  border-left: 1px solid var(--theme-card-border);
+  border-right: 1px solid var(--theme-card-border);
+  border-bottom: 1px solid var(--theme-card-border);
+  display: flex;
+  justify-content: space-between; /* Pushes button to bottom if rewards list is short */
+  flex-direction: column; /* To align button at bottom */
+}
+
+.tierCard:hover {
+  transform: translateY(-10px); /* More pronounced hover */
+  box-shadow: 0 12px 35px var(--theme-card-shadow-hover);
+  border-color: var(--clr-primary); /* Use main primary color for hover border */
+}
+
+/* Tier-specific top border colors using CSS Variables */
+.tierCard.default { border-top-color: var(--tier-default-color); } 
+.tierCard.silver { border-top-color: var(--tier-silver-color); }
+.tierCard.gold { border-top-color: var(--tier-gold-color); }
+.tierCard.diamond {
+  border-top-image: var(--tier-diamond-color); /* Apply gradient to border */
+  border-top-style: solid; /* Ensure border style is solid for gradient */
+}
+
+
+.tierIcon {
+  font-size: 3.5rem; /* Larger icon */
+  margin-bottom: 1.5rem;
+  color: var(--clr-primary); /* Default icon color to primary */
+  transition: transform var(--transition-fast);
+}
+.tierCard:hover .tierIcon {
+  transform: scale(1.1);
+}
+.tierCard.silver .tierIcon { color: var(--tier-silver-color); }
+.tierCard.gold .tierIcon { color: var(--tier-gold-color); } /* Sun Yellow */
+.tierCard.diamond .tierIcon { 
+  /* For gradient icon, you might need to use background-clip: text and text-fill-color: transparent */
+  /* Or use an SVG icon that can take a gradient fill */
+  /* Simple approach: use primary or accent color */
+  color: var(--clr-primary); 
+}
+
+
+.tierName {
+  font-size: 1.75rem; /* Slightly larger */
+  font-weight: 700; /* Bolder */
+  margin-bottom: 0.75rem;
+  color: var(--theme-page-text-primary);
+}
+
+.tierPoints {
+  font-size: 1rem;
+  color: var(--theme-page-text-secondary);
+  margin-bottom: 2rem; /* Increased margin */
+}
+.tierPoints strong {
+  color: var(--clr-primary); /* Bright Blue for points emphasis */
+  font-weight: 700;
+}
+
+.tierRewards {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2.5rem; /* Increased margin */
+  text-align: left;
+  flex-grow: 1; /* Allow rewards list to take space */
+}
+
+.tierRewards li {
+  margin-bottom: 0.85rem; /* Adjusted margin */
+  color: var(--theme-page-text-secondary);
+  font-size: 1rem; /* Slightly larger */
+  padding-left: 2em; /* Increased padding for icon */
+  position: relative;
+  line-height: 1.5;
+}
+
+.tierRewards li::before {
+  content: '✓';
+  color: var(--clr-success); /* Use main success color */
+  position: absolute;
+  left: 0.25em; /* Adjusted position */
+  font-weight: bold;
+  font-size: 1.1em; /* Slightly larger checkmark */
+}
+
+/* Button Styling (using established patterns) */
+.button { /* Base button style - can be composed */
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  transition: var(--transition-fast);
+  text-align: center;
+  display: inline-block;
+  width: 100%; /* Default to full width within its container */
+  max-width: 280px; /* Max width for the button */
+  margin: 0 auto; /* Center the button */
+}
+
+.upgradeButton {
+  composes: button;
+  background-color: var(--theme-button-primary-bg);
+  color: var(--theme-button-primary-text);
+  box-shadow: 0 4px 12px var(--theme-card-shadow); /* Use themed shadow */
+  margin-top: auto; /* Pushes button to bottom of flex container */
+}
+
+.upgradeButton:hover:not(:disabled) {
+  background-color: var(--theme-button-primary-hover-bg);
+  transform: translateY(-2px) scale(1.02); /* Subtle scale */
+  box-shadow: 0 6px 18px var(--theme-card-shadow-hover); /* Use themed shadow */
+}
+
+.upgradeButton:disabled {
+  background-color: var(--theme-button-disabled-bg);
+  color: var(--theme-button-disabled-text);
+  cursor: not-allowed;
+  opacity: 0.7;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Message Styles (using established patterns) */
+.message {
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  margin-bottom: 2rem; /* Consistent margin */
+  font-size: 0.95rem;
+  border-width: 1px;
+  border-style: solid;
+  text-align: center;
+}
+
+.errorMessage {
+  composes: message;
+  color: var(--theme-error-text);
+  background-color: var(--theme-error-bg-light);
+  border-color: var(--theme-error-border);
+}
+
+.successMessage {
+  composes: message;
+  color: var(--theme-success-text);
+  background-color: var(--theme-success-bg-light);
+  border-color: var(--theme-success-border);
+}
+
+.loadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 250px; /* Increased height */
+  font-size: 1.25rem; /* Slightly larger */
+  color: var(--theme-page-text-secondary);
+  padding: 2rem;
+}
+.loadingContainer .icon { /* If you add a spinner icon */
+  margin-right: 0.75rem;
+  font-size: 1.5em;
+  animation: spin 1s linear infinite; /* Example spin animation */
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .tiersGrid {
+    /* For tablets, maybe 2 columns is better */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Or explicitly 2 if auto-fit isn't behaving */
+  }
+}
+
+@media (max-width: 768px) {
+  .tiersPageContainer {
+    padding: 1.5rem;
+    margin: 1.5rem auto;
+  }
+  .pageTitle {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+  .currentUserInfo {
+    padding: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+  .currentUserInfo p {
+    font-size: 1.05rem;
+  }
+  .tierCard {
+    padding: 2rem;
+  }
+  .tierName {
+    font-size: 1.6rem;
+  }
+  .tierIcon {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tiersPageContainer {
+    padding: 1rem;
+    margin: 1rem auto;
+    border-radius: 0; /* Full width on very small screens */
+  }
+  .pageTitle {
+    font-size: 1.8rem; /* Slightly larger for better readability */
+  }
+  .tiersGrid {
+    grid-template-columns: 1fr; /* Single column */
+    gap: 2rem;
+  }
+  .tierCard {
+    padding: 1.5rem;
+  }
+  .tierName {
+    font-size: 1.6rem; /* Slightly larger */
+  }
+  .upgradeButton {
+    font-size: 0.95rem;
+    padding: 0.7rem 1.2rem;
+  }
+}

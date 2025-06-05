@@ -1,0 +1,150 @@
+/* c:/Users/misba/OneDrive/Documents/workopoly1_proj/frontend/src/components/OtpVerification/OtpVerification.module.css */
+
+/* --- CSS Variables (Using Home Page Theme) --- */
+:root {
+  /* Core colors (Task Manager Theme) */
+  --clr-primary: #3B82F6;         /* Bright Blue */
+  --clr-primary-rgb: 59, 130, 246;
+  --clr-primary-dark: #2563EB;    /* Darker Bright Blue */
+  --clr-accent: #F472B6;          /* Soft Pink */
+  --clr-accent-dark: #EC4899;     /* Darker Soft Pink */
+
+  --clr-bg-main: #F0F9FF;         /* Blue-Tinted White */
+  --clr-bg-card: #FFFFFF;         /* White */
+
+  --clr-text-primary: #1E293B;    /* Slate */
+  --clr-text-secondary: #475569;  /* Lighter Slate */
+  --clr-text-muted: #64748B;      /* Slate 500 */
+  --clr-text-on-accent: #FFFFFF;  /* White text on colored backgrounds */
+
+  /* Standard UI Elements */
+  --input-border-color: #e5e7eb; /* Gray-200 */
+  --input-focus-border-color: var(--clr-primary); /* Bright Blue for input focus */
+  --input-focus-shadow-color: rgba(var(--clr-primary-rgb), 0.2); /* Bright Blue shadow */
+  --card-shadow-color: rgba(var(--clr-primary-rgb), 0.1); /* Subtle primary shadow */
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+
+  --color-success: #10B981;         /* Emerald Green */
+  --color-success-rgb: 16, 185, 129;
+  --color-error: #EF4444;           /* Red */
+  --color-error-rgb: 239, 68, 68;
+}
+
+.otpContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 120px); /* Adjust based on Navbar/Footer */
+    background-color: var(--clr-bg-main); /* Blue-Tinted White */
+    font-family: 'Poppins', sans-serif; /* Assuming Poppins from other files */
+  }
+  
+  .otpForm {
+    background: var(--clr-bg-card); /* White */
+    padding: 2rem 2.5rem;
+    border-radius: var(--border-radius-lg); 
+    box-shadow: 0 8px 25px var(--card-shadow-color); /* Subtle primary shadow */
+    width: 100%;
+    max-width: 400px; /* Adjust as needed */
+    text-align: center;
+  }
+  
+  .otpForm h2 {
+    margin-bottom: 1rem;
+    color: var(--clr-text-primary); /* Slate */
+  }
+  
+  .infoText {
+      margin-bottom: 1.5rem;
+      color: var(--clr-text-secondary); /* Lighter Slate */
+      font-size: 0.95rem;
+  }
+  
+  .inputWrapper {
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+  
+  .inputWrapper label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500; /* Adjusted weight */
+    color: var(--clr-text-secondary); /* Lighter Slate */
+  }
+  
+  .inputWrapper input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--input-border-color); /* Gray-200 */
+    border-radius: var(--border-radius-md); 
+    color: var(--clr-text-primary); /* Slate */
+    box-sizing: border-box; /* Important */
+    font-size: 1rem;
+    text-align: center; /* Center OTP input text */
+    letter-spacing: 0.5em; /* Space out digits */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .inputWrapper input:focus {
+    outline: none;
+    border-color: var(--input-focus-border-color); /* Bright Blue */
+    box-shadow: 0 0 0 3px var(--input-focus-shadow-color); /* Bright Blue shadow */
+  }
+  
+  .otpForm button {
+    width: 100%;
+    padding: 0.9rem;
+    background-color: var(--clr-primary); /* Bright Blue */
+    color: var(--clr-text-on-accent); /* White text */
+    border: none;
+    border-radius: var(--border-radius-md); /* Consistent radius */
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .otpForm button:hover:not(:disabled) {
+    background-color: var(--clr-primary-dark); /* Darker Bright Blue */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(var(--clr-primary-rgb), 0.2); /* Primary shadow */
+  }
+  
+  .otpForm button:disabled {
+    background-color: var(--clr-text-muted); /* Muted Slate for disabled */
+    cursor: not-allowed;
+  }
+  
+  .resendButton {
+      margin-top: 1rem;
+      background-color: var(--clr-accent); /* Soft Pink for secondary button */
+  }
+  .resendButton:hover:not(:disabled) {
+      background-color: var(--clr-accent-dark); /* Darker Soft Pink */
+  }
+  
+  
+  .errorMessage {
+    color: var(--color-error); /* Red */
+    background-color: rgba(var(--color-error-rgb), 0.1); /* Light Red background */
+    border: 1px solid rgba(var(--color-error-rgb), 0.3); /* Lighter Red border */
+    padding: 0.75rem;
+    border-radius: var(--border-radius-md);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  .successMessage {
+    color: var(--color-success); /* Emerald Green */
+    background-color: rgba(var(--color-success-rgb), 0.1); /* Light Green background */
+    border: 1px solid rgba(var(--color-success-rgb), 0.3); /* Lighter Green border */
+    padding: 0.75rem;
+    border-radius: var(--border-radius-md);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+  

@@ -1,0 +1,216 @@
+/* src/components/Footer/Footer.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* --- Define Footer Variables (align with Home/Navbar theme) --- */
+/* These should ideally be global, but defined here for context if not. */
+:root {
+  /* New Color Palette */
+  --clr-primary: #3B82F6;           /* Bright Blue */
+  --clr-primary-rgb: 59, 130, 246;
+  --clr-accent: #F472B6;            /* Soft Pink */
+  --clr-accent-rgb: 244, 114, 182;
+  --clr-secondary: #FBBF24;         /* Sun Yellow */
+  --clr-secondary-rgb: 251, 191, 36;
+
+  --clr-bg-main: #F0F9FF;           /* Blue-Tinted White - Page background */
+  --clr-bg-footer: #FFFFFF;         /* White for footer background for slight contrast */
+  --clr-text-primary: #1E293B;      /* Slate - Primary text */
+  --clr-text-primary-rgb: 30, 41, 59;
+  --clr-text-muted: #64748B;        /* Slate 500 - Secondary text */
+
+  /* Font */
+  --font-primary: 'Poppins', sans-serif;
+
+  /* Spacing & Radii (assuming these might be global too) */
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --border-radius-md: 12px;
+}
+
+/* Fade-in Animation */
+@keyframes fadeInFooter {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Float Animation */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); } /* Adjusted float */
+  100% { transform: translateY(0px); }
+}
+
+
+.footer {
+  background: var(--clr-bg-footer); /* Using a clean white background */
+  color: var(--clr-text-primary);
+  font-family: var(--font-primary);
+  padding: 4rem 2rem 2rem;
+  margin-top: 0;
+  width: 100%;
+  box-shadow: 0 -3px 15px rgba(var(--clr-text-primary-rgb), 0.07); /* Softer shadow for light bg */
+  animation: fadeInFooter 1s ease-out 0.5s forwards;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(20px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Optional: Add subtle background elements */
+.footer::before, .footer::after {
+   content: '';
+   position: absolute;
+   border-radius: 70% 30% 40% 60% / 60% 40% 70% 30%;
+   background: rgba(var(--clr-primary-rgb), 0.04); /* Subtle primary color tint */
+   z-index: 0;
+   animation: float 25s ease-in-out infinite alternate;
+}
+.footer::before { width: 180px; height: 180px; bottom: 5%; left: 10%; animation-duration: 28s; opacity: 0.7;}
+.footer::after { width: 240px; height: 240px; top: 10%; right: 8%; animation-duration: 22s; animation-delay: 1.5s; opacity: 0.7;}
+
+
+.footerTop {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: left;
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  gap: 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.footerSection {
+  flex: 1 1 200px;
+  min-width: 180px;
+  margin-bottom: 1.5rem;
+}
+
+/* Specific styling for About and Connect sections */
+.footerAboutSection { flex-basis: 280px; }
+.footerConnectSection { flex-basis: 240px; }
+
+.footerTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  color: var(--clr-text-primary);
+  letter-spacing: 0.5px;
+}
+
+.footerAbout {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--clr-text-muted);
+  padding-right: 1rem;
+}
+
+.footerSection ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footerSection ul li {
+  margin-bottom: 12px;
+}
+
+.footerSection ul li a {
+  color: var(--clr-text-muted);
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+  font-size: 0.95rem;
+  position: relative;
+  padding-bottom: 2px;
+}
+
+.footerSection ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--clr-primary); /* Primary color for underline */
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease-out;
+}
+
+.footerSection ul li a:hover {
+  color: var(--clr-primary); /* Primary color for link hover */
+}
+.footerSection ul li a:hover::after {
+    transform: scaleX(1);
+}
+
+.footerSection p {
+   font-size: 0.9rem;
+   color: var(--clr-text-muted);
+   margin-bottom: 1rem;
+   line-height: 1.6;
+}
+
+.socialIcons {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.socialIcons a {
+  color: var(--clr-text-muted);
+  text-decoration: none;
+  font-size: 1.5rem;
+  transition: transform 0.3s ease, color 0.3s ease;
+  display: inline-block;
+}
+
+.socialIcons a:hover {
+  transform: scale(1.25) translateY(-3px);
+  color: var(--clr-primary); /* Primary color for social icon hover */
+}
+
+.footerBottom {
+  text-align: center;
+  font-size: 0.85rem;
+  border-top: 1px solid rgba(var(--clr-text-primary-rgb), 0.1); /* Subtle dark border */
+  padding-top: 2rem;
+  color: var(--clr-text-muted);
+  opacity: 0.8; /* Slightly more visible copyright */
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .footerTop {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+  .footerSection {
+    min-width: unset;
+    flex-basis: auto;
+  }
+  .footerAbout {
+    padding-right: 0;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  .socialIcons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer { padding: 3rem 1rem 1.5rem; }
+  .footerTitle { font-size: 1.1rem; }
+  .footerSection ul li a { font-size: 0.9rem; }
+  .footerAbout, .footerSection p { font-size: 0.85rem; }
+  .socialIcons a { font-size: 1.3rem; }
+  .footerBottom { font-size: 0.8rem; }
+}

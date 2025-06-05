@@ -1,0 +1,133 @@
+/* src/components/AdminSidebar/AdminSidebar.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Core colors (Task Manager Theme from Home.module.css) */
+  --clr-primary: #3B82F6;         /* Bright Blue */
+  --clr-primary-rgb: 59, 130, 246;
+  --clr-primary-dark: #2563EB;    /* Darker Bright Blue */
+  --clr-primary-light: #60A5FA;   /* Lighter Bright Blue for hover border */
+  --clr-accent: #F472B6;          /* Soft Pink */
+  --clr-accent-rgb: 244, 114, 182;
+  --clr-accent-dark: #EC4899;     /* Darker Soft Pink */
+
+  --clr-bg-main: #F0F9FF;         /* Blue-Tinted White */
+  --clr-bg-card: #FFFFFF;         /* White */
+
+  --clr-text-primary: #1E293B;    /* Slate */
+  --clr-text-secondary: #475569;  /* Lighter Slate */
+  --clr-text-muted: #64748B;      /* Slate 500 */
+  --clr-text-on-accent: #FFFFFF;  /* White text on colored backgrounds */
+
+  /* Admin Sidebar specific variables (to match user sidebar styling) */
+  --admin-sidebar-bg: var(--clr-bg-card); /* White */
+  --admin-sidebar-border-color: #e5e7eb; /* Gray-200 */
+  --admin-sidebar-text-primary: var(--clr-text-primary); /* Slate */
+  --admin-sidebar-text-secondary: var(--clr-text-secondary); /* Lighter Slate */
+  
+  --admin-sidebar-active-bg: var(--clr-primary); /* Bright Blue for active background */
+  --admin-sidebar-active-text: var(--clr-text-on-accent); /* White text on Blue */
+  --admin-sidebar-active-border: var(--clr-primary-dark); /* Darker Blue border for active */
+  
+  --admin-sidebar-hover-bg: rgba(var(--clr-primary-rgb), 0.05); /* Light Blue for hover background */
+  --admin-sidebar-hover-text: var(--clr-primary); /* Bright Blue text on hover */
+  --admin-sidebar-hover-border: var(--clr-primary-light); /* Lighter Blue border on hover */
+  
+  --admin-sidebar-header-text-color: var(--clr-primary); /* Bright Blue for header text */
+  --admin-sidebar-admin-label-color: var(--clr-text-muted); /* Slate 500 for "Admin Panel" */
+
+  --admin-sidebar-shadow-color: rgba(var(--clr-primary-rgb), 0.05); /* Subtle primary shadow */
+
+  /* Logout button variables are removed as the button is removed */
+
+  --font-primary: 'Poppins', sans-serif;
+  --transition-fast: all 0.2s ease-in-out;
+}
+
+.sidebar {
+  width: 260px; 
+  background-color: var(--admin-sidebar-bg); 
+  color: var(--admin-sidebar-text-secondary); 
+  border-right: 1px solid var(--admin-sidebar-border-color);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  box-shadow: 3px 0 8px var(--admin-sidebar-shadow-color);
+  font-family: var(--font-primary);
+}
+
+.sidebarHeader {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid var(--admin-sidebar-border-color);
+}
+
+.sidebarHeader h2 {
+  margin: 0 0 0.3rem 0;
+  color: var(--admin-sidebar-header-text-color); 
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.adminLabel {
+    font-size: 0.8rem;
+    color: var(--admin-sidebar-admin-label-color);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.sidebarNavList {
+  list-style: none;
+  padding: 1rem 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.sidebarNavList li {
+  margin: 0;
+}
+
+.sidebarLink {
+  display: flex;
+  align-items: center;
+  padding: 0.9rem 1.5rem;
+  text-decoration: none;
+  color: var(--admin-sidebar-text-secondary);
+  font-weight: 500;
+  transition: background-color var(--transition-fast), color var(--transition-fast), border-left-color var(--transition-fast);
+  gap: 0.9rem; 
+  border-left: 4px solid transparent; 
+}
+
+.sidebarLink:hover {
+  background-color: var(--admin-sidebar-hover-bg); 
+  color: var(--admin-sidebar-hover-text);
+  border-left-color: var(--admin-sidebar-hover-border); 
+}
+
+.sidebarLink.active {
+  background-color: var(--admin-sidebar-active-bg); 
+  color: var(--admin-sidebar-active-text);
+  font-weight: 600;
+  border-left: 4px solid var(--admin-sidebar-active-border); 
+}
+
+.sidebarLink.active:hover {
+    background-color: var(--admin-sidebar-active-bg); 
+    color: var(--admin-sidebar-active-text);
+}
+
+/* Styles for sidebarFooter and logoutButton are removed as the elements are removed from JSX */
+.sidebarFooter {
+  /* This class is no longer used, styles can be removed or kept if you plan to reintroduce a footer */
+}
+
+/* Icon styling */
+.sidebarLink svg {
+  width: 18px; 
+  height: 18px;
+  /* margin-right: 0.1rem; Removed as gap property on parent handles spacing */
+  flex-shrink: 0;
+}

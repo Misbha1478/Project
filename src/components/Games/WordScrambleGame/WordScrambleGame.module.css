@@ -1,0 +1,250 @@
+.gameContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Align content to the top for active game */
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7f6;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  max-width: 650px;
+  min-height: 500px; /* Give it some consistent height */
+  margin: 30px auto;
+  text-align: center;
+  box-sizing: border-box;
+  position: relative; /* Needed for absolute positioning of the back button */
+}
+
+.initialScreen, .loadingScreen, .gameOverScreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  color: #333;
+  height: 100%; /* Take full height of container for centering */
+  flex-grow: 1; /* Allow these screens to fill available space */
+  width: 100%; /* Ensure it takes full width for centering content */
+}
+
+.initialScreen h1 {
+  font-size: 2.2em;
+  color: #2c3e50;
+}
+.initialScreen p {
+  font-size: 1.1em;
+  color: #555;
+  max-width: 80%;
+}
+
+.loadingScreen p, .gameOverScreen h2, .gameOverScreen p {
+  margin: 10px 0;
+}
+.gameOverScreen h2 {
+  font-size: 2em;
+  color: #2c3e50;
+}
+
+.gameHeader {
+  width: 100%;
+  margin-bottom: 25px;
+}
+
+.gameHeader h1 {
+  color: #2c3e50;
+  font-size: 2.2em;
+  margin-bottom: 10px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.1em;
+  color: #34495e;
+  background-color: #ecf0f1;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.wordArea {
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.scrambledWord {
+  font-size: 3em;
+  font-weight: 600;
+  letter-spacing: 5px;
+  color: #2980b9;
+  background-color: #ffffff;
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+  min-width: 250px;
+  text-align: center;
+}
+
+.timer {
+  font-size: 1.4em;
+  color: #c0392b;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+}
+
+.feedback {
+  margin: 15px auto; /* Centered feedback */
+  padding: 12px 18px;
+  border-radius: 5px;
+  font-size: 1.05em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 90%; /* Ensure feedback doesn't get too wide */
+}
+
+.feedback.success {
+  background-color: #e8f5e9; /* Lighter green */
+  color: #2e7d32;
+  border: 1px solid #a5d6a7;
+}
+
+.feedback.error {
+  background-color: #ffebee; /* Lighter red */
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+}
+
+.feedback.info {
+  background-color: #e1f5fe; /* Lighter blue */
+  color: #0277bd;
+  border: 1px solid #90caf9;
+}
+.hintFeedback {
+  font-style: italic;
+}
+
+.inputForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  max-width: 450px;
+}
+
+.inputField {
+  padding: 14px 18px;
+  font-size: 1.2em;
+  border: 1px solid #bdc3c7;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.controlButton {
+  padding: 12px 25px;
+  font-size: 1.05em;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: #3498db;
+  color: white;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.controlButton:hover:not(:disabled) {
+  background-color: #2980b9;
+  transform: translateY(-1px);
+}
+.controlButton:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+.playButton { /* Specific style for start/play again buttons */
+  background-color: #2ecc71;
+}
+.playButton:hover:not(:disabled) {
+  background-color: #27ae60;
+}
+
+.hintButton {
+  background-color: #f39c12;
+}
+.hintButton:hover:not(:disabled) {
+  background-color: #e67e22;
+}
+
+.wordOverControls {
+  margin-top: 20px;
+}
+.stats {
+  display: flex;
+  justify-content: space-between; /* Changed for better quit button placement */
+  font-size: 1.1em;
+  color: #34495e;
+  background-color: #ecf0f1;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  align-items: center; /* Vertically align items in stats bar */
+  flex-wrap: wrap; /* Allow wrapping if space is tight */
+}
+
+/* ... other styles ... */
+
+.quitButton {
+  background-color: #e74c3c; /* Red color for quit */
+  padding: 8px 15px; /* Slightly smaller padding */
+  font-size: 0.95em;
+}
+.quitButton:hover:not(:disabled) {
+  background-color: #c0392b;
+}
+
+/* ... other styles ... */
+
+.lowTimeAlert {
+  color: #c0392b; /* Red color for alert */
+  font-weight: bold;
+  margin-top: 10px;
+  font-size: 1.1em;
+}
+
+.backButton {
+  background-color: #7f8c8d; /* Neutral grey color */
+  padding: 10px 15px;
+  font-size: 0.9em;
+}
+
+.backButton:hover:not(:disabled) {
+  background-color: #95a5a6;
+}
+
+/* For positioning the back button at the top-left in loading/game over/preparing states */
+.backButtonAbsolute {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  padding: 8px 10px; /* Make it a bit smaller when absolute */
+}
+
+.backButtonIngame { /* Specific style for in-game back button if needed */
+  /* top: 25px; /* Adjust if header pushes it down */
+}

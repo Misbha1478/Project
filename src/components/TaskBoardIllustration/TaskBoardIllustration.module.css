@@ -1,0 +1,288 @@
+/* Example for TaskBoardIllustration.css */
+
+/* Ensure font-family is set globally or in a parent component */
+/* body {
+    font-family: 'Arial', sans-serif;
+} */
+
+/* CSS Generated Illustration */
+.hero-illustration {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    max-width: 600px; /* Adjust as needed if used standalone */
+    height: 500px;    /* Adjust as needed if used standalone */
+    /* If used standalone, you might need to set a background or context */
+}
+
+/* Task Board Container */
+.task-board {
+    width: 350px;
+    height: 450px;
+    background: rgba(255, 255, 255, 0.95); /* Or a solid color if not on a gradient */
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    position: relative;
+    animation: float 6s ease-in-out infinite;
+    color: #333; /* Default text color for elements inside if not white like hero */
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(1deg); }
+}
+
+/* Task Board Header */
+.board-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.board-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.board-menu {
+    width: 6px;
+    height: 6px;
+    background: #6b7280;
+    border-radius: 50%;
+    position: relative;
+}
+
+.board-menu::before,
+.board-menu::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #6b7280;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.board-menu::before {
+    top: -12px;
+}
+
+.board-menu::after {
+    top: 12px;
+}
+
+/* Task Items */
+.task-item {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+    animation: slideIn 0.8s ease-out;
+}
+
+.task-item:nth-child(2) { animation-delay: 0.2s; } /* Adjust if structure changes */
+.task-item:nth-child(3) { animation-delay: 0.4s; }
+.task-item:nth-child(4) { animation-delay: 0.6s; }
+
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.task-completed {
+    background: #ecfdf5;
+    border-color: #10b981;
+}
+
+.task-in-progress {
+    background: #fef3c7;
+    border-color: #f59e0b;
+}
+
+.task-pending {
+    background: #fef2f2;
+    border-color: #ef4444;
+}
+
+/* Task Content */
+.task-checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #d1d5db;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    margin-right: 12px;
+    vertical-align: top;
+}
+
+.task-completed .task-checkbox {
+    background: #10b981;
+    border-color: #10b981;
+}
+
+.task-completed .task-checkbox::after {
+    content: '✓';
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    top: -2px;
+    left: 3px;
+}
+
+.task-text {
+    display: inline-block;
+    font-size: 0.9rem;
+    color: #374151;
+    line-height: 1.4;
+    width: calc(100% - 32px);
+}
+
+.task-completed .task-text {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.task-priority {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+
+.priority-high { background: #ef4444; }
+.priority-medium { background: #f59e0b; }
+.priority-low { background: #10b981; }
+
+/* Floating Elements */
+.floating-element {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    animation: floatAround 8s ease-in-out infinite;
+}
+
+.stats-card {
+    top: 50px;
+    left: -80px; /* May need adjustment depending on parent container */
+    width: 120px;
+    text-align: center;
+    animation-delay: -2s;
+}
+
+.stats-number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1d4ed8; /* Or another contrasting color if not on blue gradient */
+    display: block;
+}
+
+.stats-label {
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+.notification-card {
+    bottom: 80px;
+    right: -100px; /* May need adjustment */
+    width: 140px;
+    animation-delay: -4s;
+}
+
+.notification-icon {
+    width: 12px;
+    height: 12px;
+    background: #10b981;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+.notification-text {
+    font-size: 0.8rem;
+    color: #374151;
+    display: inline-block;
+    vertical-align: top;
+    line-height: 1.3;
+}
+
+@keyframes floatAround {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    25% { transform: translateY(-15px) rotate(2deg); }
+    50% { transform: translateY(-5px) rotate(-1deg); }
+    75% { transform: translateY(-12px) rotate(1deg); }
+}
+
+/* Progress Ring */
+.progress-ring {
+    position: absolute;
+    top: -30px;
+    right: -30px;
+    width: 80px;
+    height: 80px;
+}
+
+.progress-ring svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.progress-ring circle {
+    fill: none;
+    stroke-width: 6;
+}
+
+.progress-ring .bg {
+    stroke: rgba(0, 0, 0, 0.1); /* Adjusted for potentially lighter background */
+}
+
+.progress-ring .progress {
+    stroke: #10b981;
+    stroke-linecap: round;
+    stroke-dasharray: 157;
+    stroke-dashoffset: 47;
+    animation: progressFill 3s ease-in-out infinite alternate;
+}
+
+@keyframes progressFill {
+    0% { stroke-dashoffset: 157; }
+    100% { stroke-dashoffset: 47; }
+}
+
+/* Responsive adjustments if this component is used in various contexts */
+@media (max-width: 1024px) {
+    /* If the illustration itself needs to shrink, adjust its container */
+    .hero-illustration {
+        /* height: 400px; */ /* Example */
+        /* max-width: 90%; */ /* Example */
+    }
+    .task-board {
+        /* width: 300px; */ /* Example */
+        /* height: 380px; */ /* Example */
+        /* transform: scale(0.9); */ /* Example: scale down */
+    }
+    .floating-element {
+        /* display: none; */ /* Or scale them down / reposition */
+    }
+}
+/* Add more specific responsive rules for the illustration if needed */

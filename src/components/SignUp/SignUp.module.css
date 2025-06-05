@@ -1,0 +1,604 @@
+/* Enhanced SignUp.module.css with Modern Engaging Design */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/* --- Enhanced CSS Variables --- */
+:root {
+  /* Core colors (Enhanced Task Manager Theme) */
+  --clr-primary: #3B82F6;         /* Bright Blue */
+  --clr-primary-rgb: 59, 130, 246;
+  --clr-primary-dark: #2563EB;    /* Darker Bright Blue */
+  --clr-primary-light: #60A5FA;   /* Lighter Bright Blue */
+  --clr-accent: #F472B6;          /* Soft Pink */
+  --clr-accent-rgb: 244, 114, 182;
+  --clr-accent-dark: #EC4899;     /* Darker Soft Pink */
+  --clr-accent-light: #F9A8D4;    /* Lighter Soft Pink */
+  --clr-secondary-accent: #FBBF24; /* Sun Yellow */
+  --clr-success: #10B981;         /* Emerald Green (from home) */
+  --clr-warning: #F59E0B;         /* Amber (from home) */
+  --clr-error: #EF4444;           /* Red (from home) */
+  --clr-text-primary: #1E293B;    /* Slate */
+  --clr-text-secondary: #475569;  /* Slightly lighter Slate for secondary */
+  --clr-text-muted: #64748B;      /* Slate 500 (from home) */
+  --clr-text-on-dark: #F8FAFC;    /* Slate 50 (from home) */
+  --clr-text-on-accent: #FFFFFF;  /* White (from home) */
+  
+  /* Enhanced backgrounds */
+  --clr-bg-main: #F0F9FF;         /* Blue-Tinted White (from home) */
+  --clr-bg-card: #FFFFFF;         /* White (from home) */
+  --clr-bg-input: #F8FAFC;        /* Very light gray, almost white */
+  --clr-bg-input-focus: #FFFFFF;
+  
+  /* Enhanced borders and shadows */
+  --input-border: #E2E8F0;
+  --input-border-focus: var(--clr-primary);
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 8px 30px rgba(var(--clr-primary-rgb), 0.1); /* Primary color shadow */
+  --shadow-strong: 0 15px 40px rgba(var(--clr-primary-rgb), 0.12);/* Primary color shadow */
+  --shadow-accent: 0 8px 25px rgba(var(--clr-accent-rgb), 0.25); /* Accent color shadow */
+  --shadow-focus: 0 0 0 4px rgba(var(--clr-primary-rgb), 0.2); /* Primary color focus ring */
+  
+  /* Enhanced gradients */
+  --gradient-main: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-primary-light) 100%); /* Blue gradient */
+  --gradient-accent: linear-gradient(135deg, var(--clr-accent) 0%, var(--clr-accent-dark) 100%);
+  --gradient-card: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
+  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 100%);
+}
+
+/* --- Enhanced Animations --- */
+@keyframes slideInLeft {
+  0% { opacity: 0; transform: translateX(-100%) scale(0.9); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes slideInRight {
+  0% { opacity: 0; transform: translateX(100%) scale(0.9); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  0% { opacity: 0; transform: translateY(-30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes ripple {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+@keyframes inputFocus {
+  0% { transform: scale(1); box-shadow: var(--shadow-soft); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); box-shadow: var(--shadow-focus); }
+}
+
+@keyframes buttonHover {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-3px) scale(1.02); }
+}
+
+/* --- Enhanced Container --- */
+.signUpContainer {
+  display: flex;
+  min-height: 100vh;
+  background: var(--clr-bg-main);
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+.signUpContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; /* Using primary and accent from new palette */
+  background: radial-gradient(circle at 30% 20%, rgba(var(--clr-primary-rgb), 0.08) 0%, transparent 50%),
+              radial-gradient(circle at 70% 80%, rgba(var(--clr-accent-rgb), 0.06) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- Enhanced Left Side --- */
+.graphicSide {
+  flex: 0 0 45%;
+  background: var(--gradient-main);
+  color: var(--clr-text-on-dark);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 40px;
+  text-align: center;
+  position: relative;
+  animation: slideInLeft 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  opacity: 0;
+  z-index: 1;
+}
+
+.graphicSide::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; /* Keeping this subtle pattern */
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='3'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+  opacity: 0.3;
+}
+
+.graphicSide h1 {
+  font-size: clamp(2.8rem, 6vw, 4rem);
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(45deg, var(--clr-text-on-dark), #e0e7ff); /* Using text-on-dark */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeInDown 1s ease-out 0.5s both;
+  position: relative;
+  z-index: 2;
+}
+
+.graphicSide p {
+  font-size: clamp(1.1rem, 2.8vw, 1.4rem);
+  line-height: 1.8;
+  max-width: 450px;
+  opacity: 0.95;
+  font-weight: 400;
+  animation: fadeInUp 1s ease-out 0.7s both;
+  position: relative;
+  z-index: 2;
+}
+
+.graphicSide .logo {
+  width: 90px;
+  height: 90px;
+  margin-bottom: 2.5rem;
+  /* animation: float 3s ease-in-out infinite; */ /* Removed float animation */
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  position: relative;
+  z-index: 2;
+}
+
+/* --- Enhanced Right Side --- */
+.formSide {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 40px;
+  animation: slideInRight 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards;
+  opacity: 0;
+  overflow-y: auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Enhanced Form Card --- */
+.signUpForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 520px;
+  padding: 50px 45px;
+  background: var(--gradient-card);
+  border-radius: 24px;
+  box-shadow: var(--shadow-strong);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.signUpForm::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-accent);
+  border-radius: 24px 24px 0 0;
+}
+
+.signUpForm::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent, rgba(var(--clr-primary-rgb), 0.03), transparent); 
+  /* animation: shimmer 8s linear infinite; */ /* Removed shimmer animation */
+  pointer-events: none;
+}
+
+.signUpHeadline {
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--clr-text-primary);
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  font-weight: 700;
+  position: relative;
+  z-index: 2;
+  animation: fadeInDown 0.8s ease-out 0.8s both;
+}
+
+.signUpHeadline::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--gradient-accent);
+  border-radius: 2px;
+}
+
+/* --- Enhanced Form Elements --- */
+.signUpForm label {
+  margin-top: 24px;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: var(--clr-text-secondary);
+  text-align: left;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 2;
+  animation: fadeInUp 0.6s ease-out calc(1s + var(--delay, 0s)) both;
+}
+
+.signUpForm input {
+  padding: 18px 24px;
+  border: 2px solid var(--input-border);
+  border-radius: 16px;
+  margin-bottom: 24px;
+  font-size: 1.05rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  color: var(--clr-text-primary);
+  background: var(--clr-bg-input);
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+  animation: fadeInUp 0.6s ease-out calc(1.2s + var(--delay, 0s)) both;
+}
+
+.signUpForm input::placeholder {
+  color: var(--clr-text-muted);
+  font-weight: 400;
+  transition: opacity 0.3s ease;
+}
+
+.signUpForm input:focus {
+  outline: none;
+  border-color: var(--input-border-focus);
+  background: var(--clr-bg-input-focus);
+  box-shadow: var(--shadow-focus);
+  animation: inputFocus 0.3s ease-out;
+}
+
+.signUpForm input:focus::placeholder {
+  opacity: 0.6;
+}
+
+/* --- Enhanced Button --- */
+.signUpForm button {
+  background: var(--gradient-accent);
+  color: var(--clr-text-on-accent);
+  border: none;
+  padding: 18px 36px;
+  border-radius: 50px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  box-shadow: var(--shadow-accent);
+  margin-top: 40px;
+  width: 100%;
+  box-sizing: border-box;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  z-index: 2;
+  animation: fadeInUp 0.6s ease-out 1.8s both;
+}
+
+.signUpForm button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0; 
+  border-radius: 50%;
+  background: rgba(var(--clr-text-on-accent-rgb, 255, 255, 255), 0.2); /* Lighter ripple for dark button */
+  transition: all 0.6s ease;
+  transform: translate(-50%, -50%);
+}
+
+.signUpForm button:hover {
+  background: var(--clr-accent-dark); /* Use a darker shade of accent on hover */
+  transform: translateY(-4px) scale(1.02); /* Using accent shadow from new palette */
+  box-shadow: 0 12px 35px rgba(var(--clr-accent-rgb), 0.4); /* Slightly stronger shadow */
+  animation: buttonHover 0.3s ease-out;
+}
+
+.signUpForm button:hover::before {
+  /* width: 300px; */ /* Ripple on hover removed */
+  /* height: 300px; */
+  /* animation: ripple 0.6s ease-out; */
+}
+
+.signUpForm button:active {
+  background: var(--clr-accent-dark); /* Keep it dark or even slightly darker on active */
+  transform: translateY(-2px) scale(1.01); /* Using accent shadow from new palette */
+  box-shadow: 0 6px 20px rgba(var(--clr-accent-rgb), 0.3); /* Slightly less shadow for active */
+}
+
+/* --- Enhanced Link --- */
+.loginLinkContainer {
+  margin-top: 40px;
+  font-size: 0.95rem;
+  color: var(--clr-text-muted);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  animation: fadeInUp 0.6s ease-out 2s both;
+}
+
+.loginLink {
+  color: var(--clr-primary); /* Primary color for login link */
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  padding: 4px 8px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.loginLink::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, var(--clr-primary), var(--clr-primary-light)); /* Primary gradient */
+  border-radius: 8px;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.loginLink:hover::before {
+  opacity: 0.1;
+  transform: scale(1);
+}
+
+.loginLink::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 8px;
+  right: 8px;
+  height: 2px;
+  background: var(--gradient-main); /* Primary gradient for underline */
+  border-radius: 1px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.loginLink:hover::after {
+  transform: scaleX(1);
+}
+
+/* --- Enhanced Error Message --- */
+.errorMessage {
+  color: var(--clr-error);
+  font-size: 0.9rem; /* Using error color from new palette */
+  background: linear-gradient(135deg, rgba(var(--clr-error-rgb, 239, 68, 68), 0.1), rgba(var(--clr-error-rgb, 239, 68, 68), 0.05));
+  margin-top: -16px;
+  margin-bottom: 16px;
+  text-align: left;
+  min-height: 1.4em;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border-left: 4px solid var(--clr-error);
+  box-shadow: 0 2px 8px rgba(var(--clr-error-rgb, 239, 68, 68), 0.1);
+  font-weight: 500;
+  animation: fadeInUp 0.4s ease-out;
+}
+
+/* --- Enhanced Admin Checkbox --- */
+.adminCheckboxContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0 8px 0;
+  font-size: 0.95rem;
+  color: var(--clr-text-secondary);
+  text-align: left;
+  position: relative;
+  z-index: 2;
+  animation: fadeInUp 0.6s ease-out calc(1.6s + var(--delay, 0s)) both;
+}
+
+.adminCheckboxContainer input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  border-radius: 6px;
+  cursor: pointer;
+  accent-color: var(--clr-primary); /* Primary color for checkbox */
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.adminCheckboxContainer input[type="checkbox"]:hover {
+  transform: scale(1.1);
+}
+
+/* --- Enhanced Divider --- */
+.dividerContainer {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 35px 0;
+  color: var(--clr-text-muted);
+  position: relative;
+  z-index: 2;
+  animation: fadeInUp 0.6s ease-out 1.4s both;
+}
+
+.dividerLine {
+  flex-grow: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--input-border), transparent);
+}
+
+.dividerText {
+  padding: 0 20px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--clr-text-muted);
+  background: var(--clr-bg-card);
+  position: relative;
+}
+
+/* --- Enhanced Google Button Container --- */
+.googleButtonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 25px;
+  position: relative;
+  z-index: 2;
+  animation: fadeInUp 0.6s ease-out 1.6s both;
+}
+
+/* --- Enhanced Responsiveness --- */
+@media (max-width: 992px) {
+  .signUpContainer {
+    flex-direction: column;
+  }
+  
+  .graphicSide {
+    flex: 0 0 auto;
+    min-height: 40vh;
+    width: 100%;
+    padding: 40px 30px;
+    animation: fadeInDown 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  }
+  
+  .formSide {
+    flex: 1;
+    width: 100%;
+    padding: 40px 30px;
+    align-items: flex-start;
+    margin-top: -40px;
+    position: relative;
+    z-index: 2;
+    animation: fadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards;
+  }
+  
+  .signUpForm {
+    margin: 0 auto;
+    box-shadow: var(--shadow-strong);
+  }
+}
+
+@media (max-width: 768px) {
+  .signUpContainer::before { /* Using primary color from new palette */
+    background: radial-gradient(circle at 50% 30%, rgba(var(--clr-primary-rgb), 0.07) 0%, transparent 50%);
+  }
+  
+  .graphicSide {
+    min-height: 35vh;
+    padding: 35px 25px;
+  }
+  
+  .formSide {
+    padding: 35px 25px;
+    margin-top: -35px;
+  }
+  
+  .signUpForm {
+    padding: 40px 30px;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .graphicSide {
+    min-height: 32vh;
+    padding: 30px 20px;
+  }
+  
+  .graphicSide h1 {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .graphicSide p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .formSide {
+    padding: 30px 20px;
+    margin-top: -25px;
+  }
+  
+  .signUpForm {
+    padding: 35px 25px;
+    border-radius: 18px;
+  }
+  
+  .signUpHeadline {
+    font-size: 1.9rem;
+    margin-bottom: 30px;
+  }
+  
+  .signUpForm input {
+    padding: 16px 20px;
+    font-size: 1rem;
+    border-radius: 14px;
+  }
+  
+  .signUpForm button {
+    padding: 16px 30px;
+    font-size: 1.05rem;
+    border-radius: 40px;
+  }
+}
